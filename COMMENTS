@@ -1,0 +1,36 @@
+
+DESCRIÇÃO GERAL:
+O projeto possui uma tableViewController que implementa o protocolo UISearchBar Delegate,
+Esta tela serve para realizar a busca de endereço no Google Maps e exibir os resultados 
+nas celulas. A tela seguinte(DetailViewController) exibe o nome da localização no titulo
+da NavigationBar e o mapa do Google Maps com os placemarkers selecionados na busca anterior
+mais os placemarkers já armazenados na memoria do aparelho por meio do CoreData. Com um botão Save/Delegate
+que fica a direita da navigationBar é possivel persistir o placermarker na memoria local do aparelho. 
+
+BIBLIOTECAS DE TERCEIROS UTILIZADAS:
+*Foi utilizado cocoaPods como gerenciador de bibliotecas e a biblioteca do google maps
+foi a unica não nativa utilizada.  
+
+WEB SERVICE:
+*Em relação a chamada de web service, a principio pensei em utilizar a biblioteca de terceiros: AFNetworking,
+pois sempre utilizava esta biblioteca quando desenvolvia em Objective-C, e se tivesse escrito o codigo
+em Objective-C a teria utilizada com certeza. Percebi que não há versão dela para swift, porém é possivel 
+invoca-la por meio de um bridge de codigo Objective-C em Swift. Ao final acabei utilizando somente funções nativas
+para chamar o web service.
+
+POSSÍVEL MELHORIA:
+*Em relação a busca, só a faço quando o usuario clica no botão "Buscar" do teclado , porém acredito que para este caso
+é melhor fazer uma chamada de web service para cada letra digitada e já atualizar os resultados na tableView,
+porque a chamada da resposta é extremamente rapida, para casos nos quais a resposta do web service não é muito rapida
+ou a conexão é muito lenta, é melhor chamar o web service somente com um clique de um botão. 
+
+TESTES:
+*Em relação aos testes, decibi dividi-los em duas classes, uma que testa os modelos(no caso existe apenas um classe 
+de modelo que se chama Location). Na segunda classe de teste, testo componentes de interfaces das duas telas:
+(SearchTableView e DetailView). No teste de modelo faço asserções para determinar se o objeto location é valido, 
+por exemplo: O google Maps mapas utiliza o sistema de coordenadas WGS84, latitude e longitude são armazenadas em graus,
+um valor de latitude valido deve estar entre -85 e 85 , enquanto um valor de longitude valido deve estar entre -180 e 180.
+Em relação aos testes de interface, verifiquei se todas interfaces de ambas telas estão reagindo a ação do usuario. Criei
+também um teste que executada uma fluxo de sucesso completo de toda aplicação: 1-Usuario busca um localização 2-WebService 
+devolve uma resposta com um local que exista 3-Usuario visualiza o objeto na tela seguinte e o salvo na memoria do aparelho
+por meio do CoreData.    
