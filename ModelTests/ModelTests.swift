@@ -55,8 +55,8 @@ class ModelTests: XCTestCase {
     }
     
     func testValidLocationLongitude() {
-        let validLon:Bool = location.longitude >= -180 && location.latitude <= 180
-        XCTAssertTrue(validLon, "Location longitude must be higher than -180 and lower than 85")
+        let validLon:Bool = location.longitude >= -180 && location.longitude <= 180
+        XCTAssertTrue(validLon, "Location longitude must be higher than -180 and lower than 180")
     }
     
     
